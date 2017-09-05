@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>component</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
+    <script src="//unpkg.com/vue/dist/vue.js"></script>
+    <script src="//unpkg.com/element-ui@1.4.2/lib/index.js"></script>
+    <style type="text/css">
+        @import url("//unpkg.com/element-ui@1.4.2/lib/theme-default/index.css");
+
+        /** {*/
+            /*padding: 0;*/
+            /*margin: 0*/
+        /*}*/
+
+        /*#app {*/
+            /*width: 500px;*/
+            /*height: 300px;*/
+            /*margin: 0 auto;*/
+            /*background-color: #ddd*/
+        /*}*/
+
+        /*.top {*/
+            /*height: 50px;*/
+            /*line-height: 50px;*/
+            /*width: 100%;*/
+            /*background-color: #999*/
+        /*}*/
+
+        /*.top ul li {*/
+            /*display: inline-block;*/
+            /*margin: 0 10px*/
+        /*}*/
+
+        /*.top ul li a {*/
+            /*text-decoration: none;*/
+            /*color: white*/
+        /*}*/
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div class="top">
+        <ul>
+            <li @click='tabToggle("tab01");'>Tab001</li>
+            <li @click='tabToggle("tab02");'>Tab002</li>
+        </ul>
+    </div>
+    <div>
+        <component :is='currentView' keep-alive></component>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src='vue.min.js'>
+</script>
+<script>
+    var tab01 = Vue.extend({
+        template: `<div id="app">
+    <div class="block">
+        <span class="demonstration">页数较少时的效果</span>
+        <el-pagination layout="prev, pager, next" :total="50">
+        </el-pagination>
+    </div>`
+    });
+
+    var tab02 = Vue.extend({
+        template: '<p>This is vgbfgfgb</p>'
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            currentView: 'tab01'
+        },
+        components: {
+            tab01: tab01,
+            tab02: tab02
+        },
+        methods: {
+            tabToggle: function (tabText) {
+                this.currentView = tabText
+            }
+        }
+    })
+</script>
+
+</html>
